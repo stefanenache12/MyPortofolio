@@ -1,0 +1,32 @@
+@use "partials/reset" as *;
+@use "partials/variables" as *;
+@use "partials/mixins" as *;
+
+// Import all of Bootstrap's CSS
+@import "bootstrap/scss/bootstrap";
+
+// Import Fira Code Font
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap');
+
+
+body {
+    width: 100%;
+    background-color: #011627;
+    position: relative;
+    border-left: 1px solid $secondary-color;
+    border-right: 1px solid $secondary-color;
+}
+
+main {
+    width: 100%;
+}
+@media (min-width: 575px) {
+    body {
+        height: 100vh;
+    }
+
+    main {
+        height: calc(100vh - 100px);
+    }
+}
+

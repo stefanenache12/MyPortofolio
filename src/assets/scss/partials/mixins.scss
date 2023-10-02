@@ -1,0 +1,10 @@
+/* 
+    --------------------
+    MIXINS
+    --------------------
+*/
+@use "variables" as *;
+
+@mixin primary-border {
+    border: 1px solid $secondary_color;
+}

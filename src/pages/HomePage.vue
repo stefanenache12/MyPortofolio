@@ -56,13 +56,7 @@ import GameComponent from '../components/GameComponent.vue';
         padding-left: 55px;
     }
 
-    @media (max-width: 999px) {
-        .presentation {
-            padding-left: 0;
-    }
-    }
-
-    @media (max-width: 574px) {
+    @media (max-width:768px) {
         h1 {
             font-size: 2.5rem;
         }

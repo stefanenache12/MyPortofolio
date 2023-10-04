@@ -1,72 +1,89 @@
 <script>
-export default {
-    name: "",
-    data() {
-        return {
+    export default {
+        name: "AboutMepage",
+        data() {
+            return {
+                isSmallWindow: false, 
+                isBigWindow:false,
+                activeItem: 'personal-info' ,
+            }
+        },
+        mounted() {
+            window.addEventListener('resize', this.checkWindowWidth);
+            this.checkWindowWidth();
+        },
+        beforeDestroy() {
+            window.removeEventListener('resize', this.checkWindowWidth);
+        },
+        methods: {
+            checkWindowWidth() {
+            this.isSmallWindow = window.innerWidth < 769;
+            this.isBigWindow = window.innerWidth > 769;
+            },
 
-        }
-    },
-    methods: {
-
+            setActiveItem(item) {
+                this.activeItem = item;
+            }
+        },
     }
-}
 </script>
 
 <template>
     <div class="row m-0 p-0">
-        <div class="col-lg-2 asside">
+        <div class="col-md-6 col-lg-2 asside">
             <div class="row m-0 p-0">
                 <div class="col-2 m-0 p-0">
 
                 </div>
-                <div class="col-10 text-light">
+                <!--ASSIDE WIDTH > 768PX-->
+                <div v-if="isBigWindow" class="col-10 info">
                     <div class="b-bottom ps-2 py-3 ">
-                        <h6>
+                        <h6 @click="setActiveItem('personal-info')" :class="{ 'text-light': activeItem === 'personal-info' }">
                             <i class="fa-solid fa-caret-down"></i> personal-info
                         </h6>
                     </div>
                     <div class="info b-bottom py-2">
-                        <h6 class="ps-2 py-2">
+                        <h6 class="ps-2 py-2" @click="setActiveItem('bio')" :class="{ 'text-light': activeItem === 'bio' }">
                             <i class="fa-solid fa-chevron-right pe-2"></i> 
                             <i class="fa-solid fa-folder pe-1" style="color: #E99287;"></i>
                             bio
                         </h6>
-                        <h6 class="ps-2 py-2 text-light">
+                        <h6 class="ps-2 py-2" @click="setActiveItem('skills')"  :class="{ 'text-light': activeItem === 'front-end' || activeItem === 'back-end' || activeItem === 'skills' }">
                             <i class="fa-solid fa-chevron-down pe-2"></i>
                             <i class="fa-solid fa-folder pe-1" style="color: #43D9AD;"></i>
                              skills
                         </h6>
-                        <h6 class="ps-5 py-2">
+                        <h6 class="ps-5 py-2" @click="setActiveItem('front-end')" :class="{ 'text-light': activeItem === 'front-end' || activeItem === 'skills' }">
                             <i class="fa-solid fa-file-code"></i>
                             front-end
                         </h6>
-                        <h6 class="ps-5 py-2">
+                        <h6 class="ps-5 py-2" @click="setActiveItem('back-end')" :class="{ 'text-light': activeItem === 'back-end' }">
                             <i class="fa-solid fa-file-code"></i>
                             back-end
                         </h6>
-                        <h6 class="ps-2 py-2 text-light">
+                        <h6 class="ps-2 py-2" :class="{ 'text-light': activeItem === 'boolean-trainee' || activeItem === 'front-desk-manager' }">
                             <i class="fa-solid fa-chevron-down pe-2"></i>
                             <i class="fa-solid fa-folder pe-1" style="color: #4D5BCE;"></i>
                             work-experience
                         </h6>
-                        <h6 class="ps-5 py-2">
+                        <h6 class="ps-5 py-2" @click="setActiveItem('boolean-trainee')" :class="{ 'text-light': activeItem === 'boolean-trainee' }">
                             <i class="fa-solid fa-file-code"></i>
                             boolean-trainee
                         </h6>
-                        <h6 class="ps-5 py-2">
+                        <h6 class="ps-5 py-2" @click="setActiveItem('front-desk-manager')" :class="{ 'text-light': activeItem === 'front-desk-manager' }">
                             <i class="fa-solid fa-file-code"></i>
                             front-desk-manager
                         </h6>
-                        <h6 class="ps-2 py-2 text-light">
+                        <h6 class="ps-2 py-2" :class="{ 'text-light': activeItem === 'full-stack-course' || activeItem === 'salvemini' }">
                             <i class="fa-solid fa-chevron-down pe-2"></i>
                             <i class="fa-solid fa-folder pe-1" style="color: #FEA55F;"></i>
                             education
                         </h6>
-                        <h6 class="ps-5 py-2">
+                        <h6 class="ps-5 py-2" @click="setActiveItem('full-stack-course')" :class="{ 'text-light': activeItem === 'full-stack-course' }">
                             <i class="fa-solid fa-file-code"></i>
                             full-stack-course
                         </h6>
-                        <h6 class="ps-5 py-2">
+                        <h6 class="ps-5 py-2" @click="setActiveItem('salvemini')" :class="{ 'text-light': activeItem === 'salvemini' }">
                             <i class="fa-solid fa-file-code"></i>
                             salvemini
                         </h6>
@@ -89,7 +106,46 @@ export default {
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 border"></div>
+        <div class="col-md-5 col-lg-4 text-light">
+            <div class="container b-bottom m-0 p-0">
+                <div class="py-3">
+                    <h6 class="ps-3 info">
+                       C:stefan/enache/personal-info/<span v-if="activeItem === 'bio'">bio</span><span v-if="activeItem === 'front-end' || activeItem === 'skills'">skills/front-end</span><span v-if="activeItem === 'back-end'">skills/back-end</span><span v-if="activeItem === 'boolean-trainee'">work-experiece/boolean</span><span v-if="activeItem === 'front-desk-manager'">work-experiece/front-desk-manager</span><span v-if="activeItem === 'full-stack-course'">education/full-stack-course</span>
+                    </h6>
+                </div>
+            </div>
+            <div class="container py-3 px-3">
+                <div v-if="activeItem === 'personal-info'">
+                    <p class="info">
+                        
+                    </p>
+                </div>
+                <div v-if="activeItem === 'bio'">
+                    BIO
+                </div>
+                <div v-if="activeItem === 'front-end' || activeItem === 'skills'">
+                    Frond-end
+                </div>
+                <div v-if="activeItem === 'back-end'">
+                    back-end
+                </div>
+                <div v-if="activeItem === 'boolean-trainee'">
+                    boolean-trainee
+                </div>
+                <div v-if="activeItem === 'front-desk-manager'">
+                    front-desk-manager
+                </div>
+                <div v-if="activeItem === 'full-stack-course'">
+                    full-stack-course
+                </div>
+                <div v-if="activeItem === 'salvemini'">
+                    salvemini
+                </div>
+            </div>
+        </div>
+        <div v-if="isBigWindow" class="col-md-0 col-lg-5">
+
+        </div> 
     </div>
 </template>
 
@@ -109,6 +165,10 @@ export default {
         .b-bottom {
             border-bottom: 1px solid #607B96;
         }
+        .col-lg-4 {
+            border-right: 1px solid #607B96;
+            margin-left: 2px;
+        }
 
         h6 {
             font-size: small;
@@ -125,4 +185,8 @@ export default {
         }
     
     }
+
+
+
+    
 </style>

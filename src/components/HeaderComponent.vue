@@ -11,7 +11,8 @@
                     'projects',
                 ],
                 isSmallWindow: false, 
-                isBigWindow:false,  
+                isBigWindow:false,
+                activeItem: 'hello' ,
         };
     },
     computed: {
@@ -31,6 +32,10 @@
         this.isSmallWindow = window.innerWidth < 576;
         this.isBigWindow = window.innerWidth > 575;
         },
+
+        setActiveItem(item) {
+            this.activeItem = item;
+        }
     },
     }
 </script>
@@ -43,7 +48,7 @@
             <ul class="nav">
                 <li class="nav-item col-md-0 col-lg-2" style="border-left: none;"></li>
                 <li class="nav-item" v-for="link in links">
-                    <router-link :to="{ name: link }" class="nav-link" >_{{ link }}</router-link>
+                    <router-link :to="{ name: link }" class="nav-link" @click="setActiveItem(link)" :class="{ 'text-light': activeItem === link }">_{{ link }}</router-link>
                 </li>
             </ul>
         </div>

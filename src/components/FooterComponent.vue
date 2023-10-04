@@ -25,10 +25,10 @@ export default {
     <footer>
         <div class="container-fluid footer-div">
             <div class="row">
-                <div class="footer-link  col-sm-4 col-md-3 col-lg-2 py-3 text-center">
+                <div class="footer-link  col-xs-12 col-sm-12 col-md-3 col-lg-2 py-3 text-center">
                     <span style="color: #43D9AD;">const</span> findMeIn =
                 </div>
-                <div v-for="link in links" class="footer-link col-sm-4 col-md-4 col-lg-2 py-3 px-2 text-center">
+                <div v-for="link in links" class="footer-link col-xs-12 col-sm-12 col-md-4 col-lg-2 py-3 px-2 text-center">
                     <a :href="link.url" target="_blank">"{{ link.name }}"</a>
                 </div>
             </div>
@@ -44,10 +44,7 @@ export default {
         border-top: 1px solid $secondary_color;
         border-bottom: 1px solid $secondary_color;
         color:  $secondary-color;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        
     }
 
     .footer-link {
@@ -64,16 +61,12 @@ export default {
         }
     }
 
-    @media (max-width: 995px) {
-    .footer-div {
-       position:unset;
-    }
 
-    @media (max-width: 574px) {
+    @media (max-width: 768px) {
         .footer-link {
             border-bottom: 1px solid $secondary_color;
         }
     }
-}
+
   
 </style>

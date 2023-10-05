@@ -5,7 +5,10 @@
             return {
                 isSmallWindow: false, 
                 isBigWindow:false,
-                activeItem: 'personal-info' ,
+                activeItem: 'personal-info',
+                frontEndIcons: [
+                    '<i class="fa-brands fa-html5 fa-2xl"></i>'
+                ]
             }
         },
         mounted() {
@@ -38,12 +41,12 @@
                 <!--ASSIDE WIDTH > 768PX-->
                 <div v-if="isBigWindow" class="col-10 info">
                     <div class="b-bottom ps-2 py-3 ">
-                        <h6 @click="setActiveItem('personal-info')" :class="{ 'text-light': activeItem === 'personal-info' }">
+                        <h6 @click="setActiveItem('personal-info')" :class="{ 'text-light': activeItem === 'personal-info' || activeItem === 'bio'}">
                             <i class="fa-solid fa-caret-down"></i> personal-info
                         </h6>
                     </div>
                     <div class="info b-bottom py-2">
-                        <h6 class="ps-2 py-2" @click="setActiveItem('bio')" :class="{ 'text-light': activeItem === 'bio' }">
+                        <h6 class="ps-2 py-2" @click="setActiveItem('bio')" :class="{ 'text-light': activeItem === 'bio' || activeItem === 'personal-info' }">
                             <i class="fa-solid fa-chevron-right pe-2"></i> 
                             <i class="fa-solid fa-folder pe-1" style="color: #E99287;"></i>
                             bio
@@ -110,24 +113,78 @@
             <div class="container b-bottom m-0 p-0">
                 <div class="py-3">
                     <h6 class="ps-3 info">
-                       C:stefan/enache/personal-info/<span v-if="activeItem === 'bio'">bio</span><span v-if="activeItem === 'front-end' || activeItem === 'skills'">skills/front-end</span><span v-if="activeItem === 'back-end'">skills/back-end</span><span v-if="activeItem === 'boolean-trainee'">work-experiece/boolean</span><span v-if="activeItem === 'front-desk-manager'">work-experiece/front-desk-manager</span><span v-if="activeItem === 'full-stack-course'">education/full-stack-course</span>
+                       C:stefan/enache/personal-info/<span v-if="activeItem === 'bio' || activeItem === 'personal-info'">bio</span><span v-if="activeItem === 'front-end' || activeItem === 'skills'">skills/front-end</span><span v-if="activeItem === 'back-end'">skills/back-end</span><span v-if="activeItem === 'boolean-trainee'">work-experiece/boolean</span><span v-if="activeItem === 'front-desk-manager'">work-experiece/front-desk-manager</span><span v-if="activeItem === 'full-stack-course'">education/full-stack-course</span>
                     </h6>
                 </div>
             </div>
             <div class="container py-3 px-3">
-                <div v-if="activeItem === 'personal-info'">
+                <!-- <div v-if="activeItem === 'personal-info'">
                     <p class="info">
                         
                     </p>
-                </div>
-                <div v-if="activeItem === 'bio'">
-                    BIO
+                </div> -->
+                <div v-if="activeItem === 'bio' || activeItem === 'personal-info'">
+                    <p class="info p-2">
+                        Junior full-stack web developer with more than 20 personal and group projects. Excellent knowledge of the main front-end and back-end frameworks, acquired after a 6-month full-time bootcamp. <br><br>
+                        I like working in teams and am able to collaborate with people from different backgrounds, respecting their opinions and learning from them. I am convinced that continuous training is essential to always keep up with market needs and to offer a high quality service.
+                    </p>
                 </div>
                 <div v-if="activeItem === 'front-end' || activeItem === 'skills'">
-                    Frond-end
+                    <div class="icons row h-auto p-5">
+                        <div class="text-center col-3">
+                            <i class="fa-brands fa-html5 fa-2xl w-100" style="color:#E99287;"></i>
+                            <h6 class="pt-3">HTML</h6>
+                        </div>
+                        <div class="text-center col-3">
+                            <i class="fa-brands fa-css3 fa-2xl" style="color: #4D5BCE;"></i>
+                            <h6 class="pt-3">CSS</h6>
+                        </div>
+                        <div class="text-center col-3">
+                            <i class="fa-brands fa-sass fa-2xl" style="color: red;"></i>
+                            <h6 class="pt-3">SASS</h6>
+                        </div>
+                        <div class="text-center col-3">
+                            <i class="fa-brands fa-js fa-2xl" style="color:#FEA55F;"></i>
+                            <h6 class="pt-3">JavaScript</h6>
+                        </div>
+                        
+                        <div class="text-center col-3">
+                            <i class="fa-brands fa-bootstrap fa-2xl" style="color: violet;"></i>
+                            <h6 class="pt-3">Bootstrap</h6>
+                        </div>
+                        <div class="text-center col-3">
+                            <i class="fa-brands fa-vuejs fa-2xl" style="color: green;"></i>
+                            <h6 class="pt-3">Vue.JS</h6>
+                        </div>
+                        <div class="text-center col-3">
+                            <i class="fa-solid fa-code fa-2xl"></i>
+                            <h6 class="pt-3">REST API</h6>
+                        </div>
+                        <div class="text-center col-3">
+                            <i class="fa-brands fa-square-github fa-2xl"></i>
+                            <h6 class="pt-3">GitHub</h6>
+                        </div>
+                    </div>
                 </div>
                 <div v-if="activeItem === 'back-end'">
-                    back-end
+                    <div class="icons row h-auto p-5">
+                        <div class="text-center col-3">
+                            <i class="fa-brands fa-php fa-2xl" style="color: gray;"></i>
+                            <h6 class="pt-3">PHP</h6>
+                        </div>
+                        <div class="text-center col-3">
+                            <i class="fa-brands fa-laravel fa-2xl" style="color: red;"></i>
+                            <h6 class="pt-3">Laravel</h6>
+                        </div>
+                        <div class="text-center col-3">
+                            <i class="fa-brands fa-node fa-2xl" style="color: green;"></i>
+                            <h6 class="pt-3">Node.JS</h6>
+                        </div>
+                        <div class="text-center col-3">
+                            <i class="fa-solid fa-database fa-2xl"></i>
+                            <h6 class="pt-3">MySQL</h6>
+                        </div>
+                    </div>
                 </div>
                 <div v-if="activeItem === 'boolean-trainee'">
                     boolean-trainee
@@ -187,6 +244,12 @@
     }
 
 
-
+    .icons {
+        display: flex;
+        
+        & > * {
+            padding: 20px 20px;
+        }
+    }
     
 </style>
